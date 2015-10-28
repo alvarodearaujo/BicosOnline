@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PROCESS model-entity="JSFProcess">
+ <PROCESS-ITEM NAME="rules:#pages#private#anunio#anuncioEdit.xhtml"
+  PATH="/pages/private/anunio/anuncioEdit.xhtml" SHAPE="32,833,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#pages#private#anunio#anuncioEdit.xhtml:0"
+   NAME="item" PATH="/pages/private/anunio/anuncioEdit.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="success::#pages#private#anuncio#anuncioAdmList.xhtml"
+    NAME="output" PATH="/pages/private/anuncio/anuncioAdmList.xhtml"
+    TARGET="rules:#pages#private#anuncio#anuncioAdmList.xhtml"
+    TITLE="success" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#pages#private#anuncio#anuncioAdmList.xhtml"
+  PATH="/pages/private/anuncio/anuncioAdmList.xhtml" SHAPE="240,849,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#pages#private#empregador#empregadorEdit.xhtml"
+  PATH="/pages/private/empregador/empregadorEdit.xhtml"
+  SHAPE="32,1137,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM
+   ID="rules:#pages#private#empregador#empregadorEdit.xhtml:0"
+   NAME="item" PATH="/pages/private/empregador/empregadorEdit.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="success::#pages#private#empregador#empregadorList.xhtml"
+    NAME="output" PATH="/pages/private/empregador/empregadorList.xhtml"
+    TARGET="rules:#pages#private#empregador#empregadorList.xhtml"
+    TITLE="success" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM
+  NAME="rules:#pages#private#empregador#empregadorList.xhtml"
+  PATH="/pages/private/empregador/empregadorList.xhtml"
+  SHAPE="240,1153,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#pages#private#intermediario#intermediarioList.xhtml"
+  PATH="/pages/private/intermediario/intermediarioList.xhtml"
+  SHAPE="240,1265,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#pages#private#usuario#usuarioEdit.xhtml"
+  PATH="/pages/private/usuario/usuarioEdit.xhtml" SHAPE="32,1361,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#pages#private#usuario#usuarioEdit.xhtml:0"
+   NAME="item" PATH="/pages/private/usuario/usuarioEdit.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="success::#pages#private#usuario#usuarioList.xhtml" NAME="output"
+    PATH="/pages/private/usuario/usuarioList.xhtml"
+    TARGET="rules:#pages#private#usuario#usuarioList.xhtml"
+    TITLE="success" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#pages#private#usuario#usuarioList.xhtml"
+  PATH="/pages/private/usuario/usuarioList.xhtml" SHAPE="240,1377,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#pages#public#anunio#indicacao.xhtml"
+  PATH="/pages/public/anunio/indicacao.xhtml" SHAPE="32,1473,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#pages#public#anunio#indicacao.xhtml:0"
+   NAME="item" PATH="/pages/public/anunio/indicacao.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="success::#pages#public#anuncio#anuncioList.xhtml" NAME="output"
+    PATH="/pages/public/anuncio/anuncioList.xhtml"
+    TARGET="rules:#pages#public#anuncio#anuncioList.xhtml"
+    TITLE="success" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#pages#public#anuncio#anuncioList.xhtml"
+  PATH="/pages/public/anuncio/anuncioList.xhtml" SHAPE="240,1489,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#pages#public#empregado#empregadoEdit.xhtml"
+  PATH="/pages/public/empregado/empregadoEdit.xhtml" SHAPE="32,1697,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#pages#public#empregado#empregadoEdit.xhtml:0"
+   NAME="item" PATH="/pages/public/empregado/empregadoEdit.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="success::#pages#public#empregado#empregadoList.xhtml"
+    NAME="output" PATH="/pages/public/empregado/empregadoList.xhtml"
+    TARGET="rules:#pages#public#empregado#empregadoList.xhtml"
+    TITLE="success" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#pages#public#empregado#empregadoList.xhtml"
+  PATH="/pages/public/empregado/empregadoList.xhtml"
+  SHAPE="240,1713,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#pages#public#intermediario#intermediarioEdit.xhtml"
+  PATH="/pages/public/intermediario/intermediarioEdit.xhtml"
+  SHAPE="32,1809,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM
+   ID="rules:#pages#public#intermediario#intermediarioEdit.xhtml:0"
+   NAME="item"
+   PATH="/pages/public/intermediario/intermediarioEdit.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="success::#pages#public#anuncio#anuncioList.xhtml" NAME="output"
+    PATH="/pages/public/anuncio/anuncioList.xhtml"
+    TARGET="rules:#pages#public#anuncio#anuncioList.xhtml"
+    TITLE="success" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM
+  NAME="rules:#pages#private#empregado#empregadoAdmEdit.xhtml"
+  PATH="/pages/private/empregado/empregadoAdmEdit.xhtml"
+  SHAPE="32,1809,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM
+   ID="rules:#pages#private#empregado#empregadoAdmEdit.xhtml:0"
+   NAME="item" PATH="/pages/private/empregado/empregadoAdmEdit.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="success::#pages#private#empregado#empregadoAdmList.xhtml"
+    NAME="output" PATH="/pages/private/empregado/empregadoAdmList.xhtml"
+    TARGET="rules:#pages#private#empregado#empregadoAdmList.xhtml"
+    TITLE="success" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM
+  NAME="rules:#pages#private#empregado#empregadoAdmList.xhtml"
+  PATH="/pages/private/empregado/empregadoAdmList.xhtml"
+  SHAPE="240,1825,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#pages#private#intermediario#intermediarioAdmEdit.xhtml"
+  PATH="/pages/private/intermediario/intermediarioAdmEdit.xhtml"
+  SHAPE="32,1249,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM
+   ID="rules:#pages#private#intermediario#intermediarioAdmEdit.xhtml:0"
+   NAME="item"
+   PATH="/pages/private/intermediario/intermediarioAdmEdit.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="success::#pages#private#intermediario#intermediarioList.xhtml"
+    NAME="output"
+    PATH="/pages/private/intermediario/intermediarioList.xhtml"
+    TARGET="rules:#pages#private#intermediario#intermediarioList.xhtml"
+    TITLE="success" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+</PROCESS>

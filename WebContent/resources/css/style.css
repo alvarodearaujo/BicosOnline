@@ -1,0 +1,26 @@
+#header {
+	border-style: solid;
+	border-width: 1px;
+	width: 900px;
+	height: 200px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#menu {
+	border-style: solid;
+	border-width: 1px;
+	width: 900px;
+	height: 35px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#content {
+	border-style: solid;
+	border-width: 1px;
+	width: 900px;
+	height: 500px;
+	margin-left: auto;
+	margin-right: auto;
+}

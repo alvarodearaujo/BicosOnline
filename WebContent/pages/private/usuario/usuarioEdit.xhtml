@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head></h:head>
+<h:body>
+
+	<ui:composition template="/pages/private/index.xhtml">
+		<ui:define name="conteudo">
+			<p:panelGrid columns="1" styleClass="width600px">
+				<h:outputLabel value="Dados do novo usuário" />
+				<h:inputHidden value="#{usuarioEditMB.usuario.id}" />
+				<p:inputText placeholder="Nome" required="true" label="Nome"
+					value="#{usuarioEditMB.usuario.nome}" styleClass="width500px"
+					maxlength="30" />
+
+				<p:password placeholder="Senha" required="true" label="Senha"
+					value="#{usuarioEditMB.usuario.password}" styleClass="width500px"
+					maxlength="10" />
+
+				<p:commandButton value="salvar" action="#{usuarioEditMB.salvar()}"
+					ajax="false" />
+			</p:panelGrid>
+		</ui:define>
+	</ui:composition>
+
+</h:body>
+</html>

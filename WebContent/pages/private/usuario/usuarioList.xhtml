@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head></h:head>
+<h:body>
+
+	<ui:composition template="/pages/private/index.xhtml">
+		<ui:define name="conteudo">
+			<p:dataTable id="datatable" var="usuario"
+				value="#{usuarioListMB.listaUsuario}" paginator="true" rows="10">
+
+				<p:column headerText="Nome" sortBy="#{usuario.nome}">
+					<h:outputText value="#{usuario.nome}" />
+				</p:column>
+				
+				<p:column headerText="Email" sortBy="#{usuario.email}">
+					<h:outputText value="#{usuario.email}" />
+				</p:column>
+			
+				<p:column headerText="Senha">
+					<h:outputText value="#{usuario.senha}" />
+				</p:column>
+			
+				<p:column>
+					<p:commandLink actionListener="#{usuarioListMB.editar(usuario)}"
+						action="usuarioEdit.xhtml">Alterar</p:commandLink>
+				</p:column>
+			
+				<p:column>
+					<p:commandLink update="datatable"
+						actionListener="#{usuarioListMB.excluir(usuario)}">Excluir</p:commandLink>
+				</p:column>
+			</p:dataTable>
+		</ui:define>
+	</ui:composition>
+
+</h:body>
+</html>

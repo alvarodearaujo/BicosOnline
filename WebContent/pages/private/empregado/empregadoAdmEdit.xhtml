@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+<h:head></h:head>
+<h:body>
+
+	<ui:composition template="/pages/private/index.xhtml">
+		<ui:define name="conteudo">
+			<p:panelGrid columns="1" styleClass="width1000px"
+				id="painelPrincipal">
+				<h3>Cadastro de Empregado</h3>
+				 <p:growl id="messages" showDetail="true" />
+
+				<h:outputText value="Dados do Empregado" />
+				<p:inputText placeholder="Digite o seu nome" required="true"
+					label="Nome" value="#{empregadoAdmEditMB.pessoa.nome}"
+					styleClass="width500px" maxlength="100" size="50" />
+
+				<p:inputMask id="cpf" value="#{empregadoAdmEditMB.pessoa.cpf}"
+					mask="999.999.999-99" placeholder="Digite o seu CPF"
+					required="true" />
+
+				<h:outputText value="Sexo" />
+				<p:selectOneMenu value="#{empregadoAdmEditMB.pessoa.sexo}">
+					<f:selectItems value="#{empregadoAdmEditMB.listaSexo}" var="sexo"
+						itemLabel="#{sexo}" itemValue="#{sexo}"></f:selectItems>
+				</p:selectOneMenu>
+								
+				<h:outputText value="Rating:" />
+        		<p:rating value="#{empregadoAdmEditMB.classificacao.nota}" stars="10" cancel="false" onRate="alert('Você classificou a nota: ' + value)" />
+				
+
+				<p:commandButton value="Salvar"
+					action="#{empregadoAdmEditMB.salvar()}" ajax="false" />
+
+			</p:panelGrid>
+		</ui:define>
+	</ui:composition>
+
+</h:body>
+</html>

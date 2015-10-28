@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+<h:head></h:head>
+<h:body>
+
+	<ui:composition template="/pages/private/index.xhtml">
+		<ui:define name="conteudo">
+			<p:panelGrid columns="1" styleClass="width1000px"
+				id="painelPrincipal">
+				<h3>Cadastro de Empregado</h3>
+
+				<h:outputText value="Dados do Empregado" />
+				<p:inputText placeholder="Digite o seu nome" required="true"
+					label="Nome" value="#{empregadoEditMB.pessoa.nome}"
+					styleClass="width500px" maxlength="100" size="50" />
+
+				<p:inputMask id="cpf" value="#{empregadoEditMB.pessoa.cpf}"
+					mask="999.999.999-99" placeholder="Digite o seu CPF"
+					required="true" />
+
+				<h:outputText value="Sexo" />
+				<p:selectOneMenu value="#{empregadoEditMB.pessoa.sexo}">
+					<f:selectItems value="#{empregadoEditMB.listaSexo}" var="sexo"
+						itemLabel="#{sexo}" itemValue="#{sexo}"></f:selectItems>
+				</p:selectOneMenu>
+
+				<br></br>
+				<h:outputText value="Dados para contato" />
+				<p:inputMask id="telefone"
+					value="#{empregadoEditMB.pessoa.telefone}" mask="(99) 9999-9999"
+					placeholder="Telefone Fixo" />
+
+				<p:inputMask id="celular" value="#{empregadoEditMB.pessoa.celular}"
+					mask="(99) 99999-9999" placeholder="Telefone Celular" required="true" />
+
+				<p:inputText placeholder="Digite o E-mail" required="true"
+					label="E-mail" value="#{empregadoEditMB.pessoa.email}"
+					styleClass="width500px" maxlength="80" size="50" />
+
+				<br></br>
+				<h:outputText value="Dados do endereço" />
+				<p:inputText placeholder="Nome da Rua" required="true"
+					label="Nome da Rua" value="#{empregadoEditMB.pessoa.endereco.rua}"
+					styleClass="width500px" maxlength="200" size="50" />
+
+				<p:inputMask id="Numero" value="#{empregadoEditMB.pessoa.endereco.numero}"
+					mask="9?99999" placeholder="Número" label="Número da Residência" />
+
+				<p:inputText placeholder="Bairro" required="true" label="Bairro"
+					value="#{empregadoEditMB.pessoa.endereco.bairro}" styleClass="width500px"
+					maxlength="100" size="50" />
+				
+				<p:inputText placeholder="Cidade" required="true" label="Cidade"
+					value="#{empregadoEditMB.pessoa.endereco.cidade}" styleClass="width500px"
+					maxlength="30" size="50" />
+
+				<h:outputText value="Estado" />
+				<p:selectOneMenu value="#{empregadoEditMB.pessoa.endereco.estado}">
+					<f:selectItems value="#{empregadoEditMB.listaEstado}" var="estado"
+						itemLabel="#{estado}" itemValue="#{estado}"></f:selectItems>
+				</p:selectOneMenu>
+
+				<br></br>
+				<h:outputLabel value="CPF do intermediário" />
+				<p:inputMask id="cpf" value="#{empregadoEditMB.cpf}"
+					mask="999.999.999-99" placeholder="CPF do intermédiario"
+					required="true" />
+				
+				<p:commandButton value="Salvar"
+					action="#{empregadoEditMB.salvar()}" ajax="false" />
+
+			</p:panelGrid>
+		</ui:define>
+	</ui:composition>
+
+</h:body>
+</html>

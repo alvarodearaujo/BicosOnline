@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head></h:head>
+<h:body>
+
+	<ui:composition template="/pages/private/index.xhtml">
+		<ui:define name="conteudo">
+
+			<p:panelGrid columns="1" styleClass="width600px">
+				<h3>Cadastro de Anúncios</h3>
+				<h:inputHidden value="#{anuncioEditMB.anuncio.id}" />
+				
+				<h:outputText value="Título do Anúncio" />
+				<p:inputText placeholder="Título" required="true" label="Título"
+					value="#{anuncioEditMB.anuncio.titulo}" styleClass="width500px"
+					maxlength="100" />
+				
+				<h:outputText value="Descrição da vaga" />
+				<p:inputText placeholder="Descrição" required="true"
+					label="Descrição" value="#{anuncioEditMB.anuncio.descricao}"
+					styleClass="width500px" maxlength="500" />
+				
+				<h:outputText value="Valor Proposto" />
+				<p:inputText placeholder="Valor" required="true" label="Valor"
+					value="#{anuncioEditMB.anuncio.valor}" styleClass="width500px"
+					maxlength="8" />
+				
+				<h:outputText value="Requesitos" />
+				<p:inputText placeholder="Requesitos" required="true"
+					label="Requesitos" value="#{anuncioEditMB.anuncio.requesitos}"
+					styleClass="width500px" maxlength="500" />
+
+				<h:outputLabel value="Área de trabalho" />
+				<p:selectOneMenu value="#{anuncioEditMB.anuncio.area}">
+					<f:selectItems value="#{anuncioEditMB.listaArea}" var="area"
+						itemLabel="#{area}" itemValue="#{area}"></f:selectItems>
+				</p:selectOneMenu>
+
+				<h:outputText value="Anunciante da vaga" />
+				<p:selectOneMenu value="#{anuncioEditMB.empregador}">
+					<f:selectItems value="#{pessoaEditMB.listaEmpregador}"
+						var="empregador" itemLabel="#{empregador.nome}"
+						itemValue="#{empregador}"></f:selectItems>
+				</p:selectOneMenu>
+
+				<p:commandButton value="salvar"
+					action="#{anuncioEditMB.salvar()}" ajax="false" />
+
+			</p:panelGrid>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

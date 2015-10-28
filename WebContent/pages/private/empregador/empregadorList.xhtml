@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head></h:head>
+<h:body>
+
+	<ui:composition template="/pages/private/index.xhtml">
+		<ui:define name="conteudo">
+			<h3>Lista dos Empregadores</h3>
+			<p:dataTable id="datatable" var="empregador"
+				value="#{empregadorListMB.listaEmpregadores}" paginator="true" rows="10">
+				<p:column headerText="Nome" sortBy="#{empregador.nome}">
+					<h:outputText value="#{empregador.nome}" />
+				</p:column>
+
+				<p:column headerText="CPF" sortBy="#{empregador.cpf}">
+					<h:outputText value="#{empregador.cpf}" />
+				</p:column>
+
+				<p:column headerText="E-mail" sortBy="#{empregador.email}">
+					<h:outputText value="#{empregador.email}" />
+				</p:column>
+				
+				<p:column headerText="Sexo" sortBy="#{empregador.sexo}">
+					<h:outputText value="#{empregador.sexo}" />
+				</p:column>
+				
+				<p:column headerText="Celular" sortBy="#{empregador.celular}">
+					<h:outputText value="#{empregador.celular}" />
+				</p:column>
+				
+				<p:column headerText="Cidade" sortBy="#{empregador.endereco.cidade}">
+					<h:outputText value="#{empregador.endereco.cidade}" />
+				</p:column>
+				
+				<p:column headerText="Bairro" sortBy="#{empregador.endereco.bairro}">
+					<h:outputText value="#{empregador.endereco.bairro}" />
+				</p:column>
+
+				<p:column headerText="Editar">
+					<p:commandLink 
+						actionListener="#{empregadorListMB.editar(empregador)}"
+						action="empregadorEdit.xhtml">Editar</p:commandLink>
+				</p:column>
+
+				<p:column headerText="Excluir">
+					<p:commandLink update="datatable"
+						actionListener="#{empregadorListMB.excluir(empregador)}">Excluir</p:commandLink>
+				</p:column>
+			</p:dataTable>
+		</ui:define>
+	</ui:composition>
+
+</h:body>
+</html>

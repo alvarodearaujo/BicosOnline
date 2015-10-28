@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:sec="http://www.springframework.org/security/tags">
+
+
+<h:head>
+	<title>Bicos Online</title>
+	<link rel="stylesheet" type="text/css"
+		href="/projetoservletjsp/css/style.css" />
+</h:head>
+<h:body>
+
+	<p:layout style="min-width:350px;min-height:1500px;">
+
+		<p:layoutUnit position="west" resizable="false">
+			<h:form>
+				<p:menu>
+					<p:submenu label="Empregador">
+						<p:menuitem url="/pages/private/empregador/empregadorEdit.xhtml"
+							value="Cadastrar Empregador" />
+						<p:menuitem url="/pages/private/empregador/empregadorList.xhtml"
+							value="Listar Empregadores"></p:menuitem>
+					</p:submenu>
+
+					<p:submenu label="Anúncio">
+						<p:menuitem url="/pages/private/anuncio/anuncioEditCreate.xhtml"
+							value="Cadastrar Anúncio" />
+						<p:menuitem url="/pages/private/anuncio/anuncioAdmList.xhtml"
+							value="Listar Anúncio"></p:menuitem>
+					</p:submenu>
+
+					<p:submenu label="Intermediario">
+						<p:menuitem
+							url="/pages/private/intermediario/intermediarioAdmEdit.xhtml"
+							value="Cadastrar Intermediario" />
+						<p:menuitem
+							url="/pages/private/intermediario/intermediarioList.xhtml"
+							value="Listar Intermediarios"></p:menuitem>
+					</p:submenu>
+
+					<p:submenu label="Empregado">
+						<p:menuitem url="/pages/private/empregado/empregadoAdmList.xhtml"
+							value="Listar empregados"></p:menuitem>
+					</p:submenu>
+					
+					<p:submenu label="Usuario">
+						<p:menuitem url="/pages/private/usuario/usuarioEdit.xhtml"
+							value="Cadastrar Usuario" />
+						<p:menuitem url="/pages/private/usuario/usuarioList.xhtml"
+							value="Listar Usuarios"></p:menuitem>
+					</p:submenu>
+				</p:menu>
+			</h:form>
+		</p:layoutUnit>
+
+		<p:layoutUnit id="layoutcenter" position="center">
+
+			<div id="conteudo">
+				<h:form id="form">
+					<p:growl id="growl" showDetail="true" sticky="true" />
+					<ui:insert name="conteudo"></ui:insert>
+				</h:form>
+			</div>
+		</p:layoutUnit>
+	</p:layout>
+
+</h:body>
+</html>

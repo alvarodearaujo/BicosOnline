@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head></h:head>
+<h:body>
+
+	<ui:composition template="/pages/private/index.xhtml">
+		<ui:define name="conteudo">
+			<h3>Lista dos Empregados</h3>
+			<p:dataTable id="datatable" var="empregado"
+				value="#{empregadoAdmListMB.listaEmpregados}" paginator="true" rows="10">
+				<p:column headerText="Nome" sortBy="#{empregado.nome}">
+					<h:outputText value="#{empregado.nome}" />
+				</p:column>
+
+				<p:column headerText="CPF" sortBy="#{empregado.cpf}">
+					<h:outputText value="#{empregado.cpf}" />
+				</p:column>
+				
+				<p:column headerText="Sexo" sortBy="#{empregado.sexo}">
+					<h:outputText value="#{empregado.sexo}" />
+				</p:column>
+				
+				<p:column headerText="Celular" sortBy="#{empregado.celular}">
+					<h:outputText value="#{empregado.celular}" />
+				</p:column>
+				
+				<p:column headerText="Cidade" sortBy="#{empregado.endereco.cidade}">
+					<h:outputText value="#{empregado.endereco.cidade}" />
+				</p:column>
+				
+				<p:column headerText="Bairro" sortBy="#{empregado.endereco.bairro}">
+					<h:outputText value="#{empregado.endereco.bairro}" />
+				</p:column>
+
+				<p:column headerText="Classificação">
+					<p:commandLink 
+						actionListener="#{empregadoAdmListMB.classificar(empregado)}"
+						action="empregadoAdmEdit.xhtml">Classificar</p:commandLink>
+				</p:column>
+
+				<p:column headerText="Excluir">
+					<p:commandLink update="datatable"
+						actionListener="#{empregadoAdmListMB.excluir(empregado)}">Excluir</p:commandLink>
+				</p:column>
+			</p:dataTable>
+		</ui:define>
+	</ui:composition>
+
+</h:body>
+</html>

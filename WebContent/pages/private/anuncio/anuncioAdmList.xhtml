@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head></h:head>
+<h:body>
+
+	<ui:composition template="/pages/private/index.xhtml">
+		<ui:define name="conteudo">
+			<h3>Lista de anúncios</h3>
+			<p:dataTable id="datatable" var="anuncio"
+				value="#{anuncioAdmListMB.listaAnuncio}" paginator="true" rows="10">
+
+				<p:column headerText="Título" sortBy="#{anuncio.titulo}">
+					<h:outputText value="#{anuncio.titulo}" />
+				</p:column>
+				
+				<p:column headerText="Descrição" sortBy="#{anuncio.descricao}">
+					<h:outputText value="#{aluno.descricao}" />
+				</p:column>
+				
+				<p:column headerText="Valor" sortBy="#{anuncio.valor}">
+					<h:outputText value="#{anuncio.valor}" />
+				</p:column>
+				
+				<p:column headerText="Requisitos" sortBy="#{anuncio.requisitos}">
+					<h:outputText value="#{anuncio.requisitos}" />
+				</p:column>
+				
+				<p:column headerText="Área" sortBy="#{anuncio.area}">
+					<h:outputText value="#{anuncio.area}" />
+				</p:column>
+				
+			</p:dataTable>
+		</ui:define>
+	</ui:composition>
+
+</h:body>
+</html>

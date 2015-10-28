@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head></h:head>
+<h:body>
+
+	<ui:composition template="/pages/private/index.xhtml">
+		<ui:define name="conteudo">
+			<h3>Lista dos Intermediários</h3>
+			<p:dataTable id="datatable" var="intermediario"
+				value="#{intermediarioListMB.listaIntermediarios}" paginator="true" rows="10">
+				<p:column headerText="Nome" sortBy="#{intermediario.nome}">
+					<h:outputText value="#{intermediario.nome}" />
+				</p:column>
+
+				<p:column headerText="CPF" sortBy="#{intermediario.cpf}">
+					<h:outputText value="#{intermediario.cpf}" />
+				</p:column>
+
+				<p:column headerText="E-mail" sortBy="#{intermediario.email}">
+					<h:outputText value="#{intermediario.email}" />
+				</p:column>
+				
+				<p:column headerText="Sexo" sortBy="#{intermediario.sexo}">
+					<h:outputText value="#{intermediario.sexo}" />
+				</p:column>
+				
+				<p:column headerText="Celular" sortBy="#{intermediario.celular}">
+					<h:outputText value="#{intermediario.celular}" />
+				</p:column>
+				
+				<p:column headerText="Cidade" sortBy="#{intermediario.endereco.cidade}">
+					<h:outputText value="#{intermediario.endereco.cidade}" />
+				</p:column>
+				
+				<p:column headerText="Bairro" sortBy="#{intermediario.endereco.bairro}">
+					<h:outputText value="#{intermediario.endereco.bairro}" />
+				</p:column>
+
+				<p:column headerText="Editar">
+					<p:commandLink 
+						actionListener="#{intermediarioListMB.editar(intermediario)}"
+						action="intermediarioAdmEdit.xhtml">Editar</p:commandLink>
+				</p:column>
+
+				<p:column headerText="Excluir">
+					<p:commandLink update="datatable"
+						actionListener="#{intermediarioListMB.excluir(intermediario)}">Excluir</p:commandLink>
+				</p:column>
+			</p:dataTable>
+		</ui:define>
+	</ui:composition>
+
+</h:body>
+</html>

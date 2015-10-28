@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head></h:head>
+<h:body>
+
+	<ui:composition template="/pages/private/index.xhtml">
+		<ui:define name="conteudo">
+			<h3>Anúncio</h3>
+			<p:dataTable id="datatable" var="anuncio"
+				value="#{indicacaoMB.anuncio}" paginator="true" rows="1">
+
+				<p:column headerText="Título" sortBy="#{anuncio.titulo}">
+					<h:outputText value="#{anuncio.titulo}" />
+				</p:column>
+
+				<p:column headerText="Descrição" sortBy="#{anuncio.descricao}">
+					<h:outputText value="#{aluno.descricao}" />
+				</p:column>
+
+				<p:column headerText="Valor" sortBy="#{anuncio.valor}">
+					<h:outputText value="#{anuncio.valor}" />
+				</p:column>
+
+				<p:column headerText="Requisitos" sortBy="#{anuncio.requisitos}">
+					<h:outputText value="#{anuncio.requisitos}" />
+				</p:column>
+
+				<p:column headerText="Área" sortBy="#{anuncio.area}">
+					<h:outputText value="#{anuncio.area}" />
+				</p:column>
+
+			</p:dataTable>
+			<br></br>
+			<h3>Selecionar empregado para indicar a vaga</h3>
+			<p:dataTable id="datatable" var="empregado"
+				value="#{empregadoListMB.listaempregados}" paginator="true"
+				rows="10">
+				<p:column headerText="Nome" sortBy="#{empregado.nome}">
+					<h:outputText value="#{empregado.nome}" />
+				</p:column>
+
+				<p:column headerText="Sexo" sortBy="#{empregado.sexo}">
+					<h:outputText value="#{empregado.sexo}" />
+				</p:column>
+
+				<p:column headerText="Celular" sortBy="#{empregado.celular}">
+					<h:outputText value="#{empregado.celular}" />
+				</p:column>
+
+				<p:column headerText="Cidade" sortBy="#{empregado.endereco.cidade}">
+					<h:outputText value="#{empregado.endereco.cidade}" />
+				</p:column>
+
+				<p:column headerText="Bairro" sortBy="#{empregado.endereco.bairro}">
+					<h:outputText value="#{empregado.endereco.bairro}" />
+				</p:column>
+
+				<p:column headerText="Indicar">
+					<p:commandButton
+						actionListener="#{indicacaoMB.adicionar(empregado)" ajax="false"></p:commandButton>
+				</p:column>
+
+			</p:dataTable>
+
+			<br></br>
+			<p:commandLink actionListener="#{indicacaoMB.concluir()}"
+				action="anuncioAdmList.xhtml">Concluir</p:commandLink>
+		</ui:define>
+	</ui:composition>
+
+</h:body>
+</html>
