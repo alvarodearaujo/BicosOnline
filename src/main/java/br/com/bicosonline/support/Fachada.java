@@ -27,8 +27,8 @@ public class Fachada {
 		this.pessoaBC.SalvarPessoa(p);
 	}
 	
-	public void removerPessoa(Pessoa p){
-		this.pessoaBC.ExcluirPessoa(p);
+	public void removerPessoa(Pessoa p, Endereco e){
+		this.pessoaBC.ExcluirPessoa(p, e);
 	}
 	
 	public void salvarEmpregado(Pessoa a, Pessoa b){
@@ -117,7 +117,7 @@ public class Fachada {
 			this.usuarioBC.salvarUsuario(usuario);
 		}
 
-		public void excluirUsuario(User usuario) {
+		public void removerUsuario(User usuario) {
 			this.usuarioBC.excluirUsuario(usuario);
 		}
 

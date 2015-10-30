@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.web.context.WebApplicationContext;
 
+import br.com.bicosonline.model.Endereco;
 import br.com.bicosonline.model.Pessoa;
 import br.com.bicosonline.support.Fachada;
 
@@ -34,7 +35,8 @@ public class IntermediarioListMB {
 	}
 
 	public void excluir(Pessoa p){
-		this.fachada.removerPessoa(p);
+		Endereco e = fachada.procurarEndereco(p);
+		this.fachada.removerPessoa(p,e);
 	}
 	
 	public Fachada getFachada() {

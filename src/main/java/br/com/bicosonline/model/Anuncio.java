@@ -13,6 +13,9 @@ public class Anuncio extends EntidadeBase<Long>{
 	@ManyToOne
 	private Pessoa pessoa;
 	
+	@Transient
+	private Pessoa empregador;
+	
 	private Long idEmpregado, idIntermediario;
 	
 	private boolean IsAberto;
@@ -45,9 +48,6 @@ public class Anuncio extends EntidadeBase<Long>{
 	}
 	public void setAnunciante(Pessoa anunciante) {
 		this.pessoa = anunciante;
-	}
-	public boolean isIsAberto() {
-		return IsAberto;
 	}
 	public void setIsAberto(boolean isAberto) {
 		IsAberto = isAberto;
@@ -102,5 +102,9 @@ public class Anuncio extends EntidadeBase<Long>{
 
 	public void setValor(int valor) {
 		this.valor = valor;
+	}
+
+	public boolean isIsAberto() {
+		return IsAberto;
 	}
 }

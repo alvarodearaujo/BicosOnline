@@ -14,26 +14,49 @@
 			<p:dataTable id="datatable" var="anuncio"
 				value="#{anuncioAdmListMB.listaAnuncio}" paginator="true" rows="10">
 
+				<p:column headerText="Numero" sortBy="#{anuncio.id}">
+					<h:outputText value="#{anuncio.id}" />
+				</p:column>
+
 				<p:column headerText="Título" sortBy="#{anuncio.titulo}">
 					<h:outputText value="#{anuncio.titulo}" />
 				</p:column>
-				
+
 				<p:column headerText="Descrição" sortBy="#{anuncio.descricao}">
-					<h:outputText value="#{aluno.descricao}" />
+					<h:outputText value="#{anuncio.descricao}" />
 				</p:column>
-				
+
 				<p:column headerText="Valor" sortBy="#{anuncio.valor}">
 					<h:outputText value="#{anuncio.valor}" />
 				</p:column>
-				
-				<p:column headerText="Requisitos" sortBy="#{anuncio.requisitos}">
-					<h:outputText value="#{anuncio.requisitos}" />
+
+				<p:column headerText="Requisitos" sortBy="#{anuncio.requesitos}">
+					<h:outputText value="#{anuncio.requesitos}" />
 				</p:column>
-				
+
 				<p:column headerText="Área" sortBy="#{anuncio.area}">
 					<h:outputText value="#{anuncio.area}" />
 				</p:column>
-				
+
+				<p:column headerText="Aberto?" sortBy="#{anuncio.isAberto}">
+					<h:outputText value="#{anuncio.isAberto}" />
+				</p:column>
+
+				<p:column headerText="Editar">
+					<p:commandLink actionListener="#{anuncioAdmListMB.editar(anuncio)}"
+						action="anuncioEditCreate.xhtml">Editar</p:commandLink>
+				</p:column>
+
+				<p:column headerText="Finalizar">
+					<p:commandLink
+						actionListener="#{anuncioAdmListMB.finalizar(anuncio)}"
+						action="anuncioEdit.xhtml">Finalizar</p:commandLink>
+				</p:column>
+
+				<p:column headerText="Excluir">
+					<p:commandLink update="datatable"
+						actionListener="#{anuncioAdmListMB.excluir(anuncio)}">Excluir</p:commandLink>
+				</p:column>
 			</p:dataTable>
 		</ui:define>
 	</ui:composition>

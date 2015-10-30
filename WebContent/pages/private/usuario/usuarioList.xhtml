@@ -11,23 +11,15 @@
 	<ui:composition template="/pages/private/index.xhtml">
 		<ui:define name="conteudo">
 			<p:dataTable id="datatable" var="usuario"
-				value="#{usuarioListMB.listaUsuario}" paginator="true" rows="10">
+				value="#{usuarioListMB.listaUser}" paginator="true" rows="10">
 
 				<p:column headerText="Nome" sortBy="#{usuario.nome}">
 					<h:outputText value="#{usuario.nome}" />
 				</p:column>
 				
-				<p:column headerText="Email" sortBy="#{usuario.email}">
-					<h:outputText value="#{usuario.email}" />
-				</p:column>
-			
-				<p:column headerText="Senha">
-					<h:outputText value="#{usuario.senha}" />
-				</p:column>
-			
 				<p:column>
 					<p:commandLink actionListener="#{usuarioListMB.editar(usuario)}"
-						action="usuarioEdit.xhtml">Alterar</p:commandLink>
+						action="usuarioEdit.xhtml">Editar</p:commandLink>
 				</p:column>
 			
 				<p:column>

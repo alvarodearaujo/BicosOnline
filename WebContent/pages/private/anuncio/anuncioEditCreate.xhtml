@@ -13,43 +13,43 @@
 
 			<p:panelGrid columns="1" styleClass="width600px">
 				<h3>Cadastro de Anúncios</h3>
-				<h:inputHidden value="#{anuncioEditMB.anuncio.id}" />
+				<h:inputHidden value="#{anuncioEditCreateMB.anuncio.id}" />
 				
 				<h:outputText value="Título do Anúncio" />
 				<p:inputText placeholder="Título" required="true" label="Título"
-					value="#{anuncioEditMB.anuncio.titulo}" styleClass="width500px"
+					value="#{anuncioEditCreateMB.anuncio.titulo}" styleClass="width500px"
 					maxlength="100" />
 				
 				<h:outputText value="Descrição da vaga" />
 				<p:inputText placeholder="Descrição" required="true"
-					label="Descrição" value="#{anuncioEditMB.anuncio.descricao}"
+					label="Descrição" value="#{anuncioEditCreateMB.anuncio.descricao}"
 					styleClass="width500px" maxlength="500" />
 				
 				<h:outputText value="Valor Proposto" />
 				<p:inputText placeholder="Valor" required="true" label="Valor"
-					value="#{anuncioEditMB.anuncio.valor}" styleClass="width500px"
+					value="#{anuncioEditCreateMB.anuncio.valor}" styleClass="width500px"
 					maxlength="8" />
 				
 				<h:outputText value="Requesitos" />
 				<p:inputText placeholder="Requesitos" required="true"
-					label="Requesitos" value="#{anuncioEditMB.anuncio.requesitos}"
+					label="Requesitos" value="#{anuncioEditCreateMB.anuncio.requesitos}"
 					styleClass="width500px" maxlength="500" />
 
 				<h:outputLabel value="Área de trabalho" />
-				<p:selectOneMenu value="#{anuncioEditMB.anuncio.area}">
-					<f:selectItems value="#{anuncioEditMB.listaArea}" var="area"
+				<p:selectOneMenu value="#{anuncioEditCreateMB.anuncio.area}">
+					<f:selectItems value="#{anuncioEditCreateMB.listaArea}" var="area"
 						itemLabel="#{area}" itemValue="#{area}"></f:selectItems>
 				</p:selectOneMenu>
 
 				<h:outputText value="Anunciante da vaga" />
-				<p:selectOneMenu value="#{anuncioEditMB.empregador}">
-					<f:selectItems value="#{pessoaEditMB.listaEmpregador}"
+				<p:selectOneMenu value="#{anuncioEditCreateMB.empregador}">
+					<f:selectItems value="#{anuncioEditCreateMB.listaEmpregador}"
 						var="empregador" itemLabel="#{empregador.nome}"
 						itemValue="#{empregador}"></f:selectItems>
 				</p:selectOneMenu>
 
 				<p:commandButton value="salvar"
-					action="#{anuncioEditMB.salvar()}" ajax="false" />
+					action="#{anuncioEditCreateMB.salvar()}" ajax="false" />
 
 			</p:panelGrid>
 		</ui:define>

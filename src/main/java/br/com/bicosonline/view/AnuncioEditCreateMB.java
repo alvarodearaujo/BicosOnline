@@ -14,9 +14,9 @@ import br.com.bicosonline.model.Anuncio;
 import br.com.bicosonline.model.AreaTrabalho;
 import br.com.bicosonline.model.Pessoa;
 import br.com.bicosonline.support.Fachada;
-@Named(value="anuncioEditMB")
+@Named(value="anuncioEditCreateMB")
 @Scope(value=WebApplicationContext.SCOPE_REQUEST)
-public class AnuncioEditMB {
+public class AnuncioEditCreateMB {
 
 	@Autowired
 	private Fachada fachada;
@@ -36,7 +36,7 @@ public class AnuncioEditMB {
 	}
 	
 	public String salvar(){
-		this.anuncio.setIsAberto(false);
+		this.anuncio.setIsAberto(true);
 		this.fachada.salvarAnuncio(this.anuncio);
 		return "success";
 	}

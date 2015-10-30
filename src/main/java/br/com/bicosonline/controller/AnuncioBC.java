@@ -27,7 +27,7 @@ public class AnuncioBC {
 		List<Anuncio> listaAnuncios = new ArrayList<Anuncio>(), listaAux ;
 		listaAux = dao.findAll();
 		for(Anuncio a : listaAux){
-			if(a.isIsAberto()){
+			if(a.isIsAberto() == true){
 				listaAnuncios.add(a);
 			}
 		}

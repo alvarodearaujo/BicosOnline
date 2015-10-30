@@ -20,17 +20,29 @@ public class AnuncioAdmListMB {
 	private Fachada fachada;
 
 	@Autowired
-	private IndicacaoMB indicacaoMB;
-
-	public void indicar(Anuncio a) {
-		this.indicacaoMB.indicar(a);
-	}
+	private AnuncioEditMB anuncioEditMB;
+	
+	@Autowired
+	private AnuncioEditCreateMB anuncioEditCreateMB;
+	
 
 	private List<Anuncio> listaAnuncio;
 
 	@PostConstruct
 	public void init() {
 		this.listaAnuncio = fachada.listarAnuncios();
+	}
+	
+	public void editar(Anuncio a){
+		this.anuncioEditCreateMB.editar(a);
+	}
+	
+	public void finalizar(Anuncio a) {
+		this.anuncioEditMB.editar(a);
+	}
+	
+	public void excluir(Anuncio a){
+		this.fachada.removerAnuncio(a);
 	}
 
 	public List<Anuncio> getListaAnuncio() {
@@ -48,14 +60,6 @@ public class AnuncioAdmListMB {
 
 	public void setFachada(Fachada fachada) {
 		this.fachada = fachada;
-	}
-
-	public IndicacaoMB getIndicacaoMB() {
-		return indicacaoMB;
-	}
-
-	public void setIndicacaoMB(IndicacaoMB indicacaoMB) {
-		this.indicacaoMB = indicacaoMB;
 	}
 
 }

@@ -13,14 +13,14 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import br.com.bicosonline.model.User;
 import br.com.bicosonline.model.repository.IUserDAO;
 
-
 @Named
-@Scope(value="session")
+@Scope(value = "session")
 public class CustomAuthenticationProvider implements AuthenticationProvider {
 
 	@Inject
@@ -42,16 +42,13 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 
 			grantedAuthorities.add(new SimpleGrantedAuthority(user.getRole()));
 
-			UserDetails userDetails = new org.springframework.security.core.userdetails.User(
-					login, password, grantedAuthorities);
+			UserDetails userDetails = new org.springframework.security.core.userdetails.User(login, password,
+					grantedAuthorities);
 			
-						
 			
-			//FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("UsuarioLogado", user);
-			
-			return new UsernamePasswordAuthenticationToken(userDetails,
-					password, grantedAuthorities);
+			return new UsernamePasswordAuthenticationToken(userDetails, password, grantedAuthorities);
 		} else {
+			FacesContext.getCurrentInstance().validationFailed();
 			return null;
 		}
 
@@ -61,5 +58,5 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 	public boolean supports(Class<?> authentication) {
 		return authentication.equals(UsernamePasswordAuthenticationToken.class);
 	}
-	
+
 }

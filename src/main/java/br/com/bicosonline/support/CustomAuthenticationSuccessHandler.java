@@ -57,7 +57,7 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
 	        }
 	 
 	        if (isUser) {
-	            return "//pages/public/index.xhtml";
+	            return "/pages/public/index.xhtml";
 	        } else if (isAdmin) {
 	            return "/pages/private/index.xhtml";
 	        } else {

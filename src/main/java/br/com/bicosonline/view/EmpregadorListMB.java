@@ -9,8 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.web.context.WebApplicationContext;
 
+import br.com.bicosonline.model.Endereco;
 import br.com.bicosonline.model.Pessoa;
+import br.com.bicosonline.model.User;
 import br.com.bicosonline.support.Fachada;
+import br.com.bicosonline.support.UserLogadoController;
 
 @Named(value="empregadorListMB")
 @Scope(value=WebApplicationContext.SCOPE_REQUEST)
@@ -24,6 +27,10 @@ public class EmpregadorListMB {
 	
 	private List<Pessoa> listaEmpregadores;
 	
+	public User usuario;
+	
+	
+	
 	@PostConstruct
 	public void init(){
 		this.listaEmpregadores = fachada.listarEmpregadores();
@@ -34,8 +41,10 @@ public class EmpregadorListMB {
 	}
 
 	public void excluir(Pessoa p){
-		this.fachada.removerPessoa(p);
+		Endereco e = fachada.procurarEndereco(p);
+		this.fachada.removerPessoa(p, e);
 	}
+	
 	public Fachada getFachada() {
 		return fachada;
 	}

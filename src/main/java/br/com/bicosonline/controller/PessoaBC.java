@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 import br.com.bicosonline.model.Anuncio;
+import br.com.bicosonline.model.Endereco;
 import br.com.bicosonline.model.Pessoa;
 import br.com.bicosonline.model.User;
 import br.com.bicosonline.model.repository.IPessoaDAO;
@@ -24,7 +25,8 @@ public class PessoaBC {
 		this.dao.save(p);
 	}
 	
-	public void ExcluirPessoa(Pessoa p){
+	public void ExcluirPessoa(Pessoa p, Endereco e){
+		this.enderecoBC.removerEndereco(e);
 		this.dao.delete(p);
 	}
 	

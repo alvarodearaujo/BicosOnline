@@ -9,20 +9,36 @@
 <h:head></h:head>
 <h:body>
 
-	<ui:composition template="/pages/private/index.xhtml">
+	<ui:composition template="/pages/public/index.xhtml">
 		<ui:define name="conteudo">
+				<p:growl id="msgs" showDetail="true" />
+
 			<p:panelGrid columns="1" styleClass="width1000px"
 				id="painelPrincipal">
 				<h3>Cadastro de Empregado</h3>
 
 				<h:outputText value="Dados do Empregado" />
-				<p:inputText placeholder="Digite o seu nome" required="true"
+				<p:inputText placeholder="Digite o nome" required="true"
 					label="Nome" value="#{empregadoEditMB.pessoa.nome}"
 					styleClass="width500px" maxlength="100" size="50" />
 
 				<p:inputMask id="cpf" value="#{empregadoEditMB.pessoa.cpf}"
-					mask="999.999.999-99" placeholder="Digite o seu CPF"
-					required="true" />
+					mask="999.999.999-99" placeholder="Digite o  CPF" required="true">
+					<f:validator validatorId="CpfValidator"></f:validator>
+				</p:inputMask>
+				<p:outputLabel value="Data de nascimento" />
+				<p:calendar id="dataNascimento"
+					value="#{empregadoEditMB.dataNascimento}" mindate="01/01/1940"
+					maxdate="01/01/2015" pattern="dd/MM/yyyy" mask="true" />
+
+				<p:inputText placeholder="Digite o RG" required="true" label="RG"
+					value="#{empregadoEditMB.pessoa.rg}" styleClass="width500px"
+					maxlength="10" size="15" />
+
+				<p:inputText placeholder="Orgão Emissor" required="true"
+					label="Orgão Expedidor"
+					value="#{empregadoEditMB.pessoa.orgaoExpedidor}"
+					styleClass="width500px" maxlength="5" size="15" />
 
 				<h:outputText value="Sexo" />
 				<p:selectOneMenu value="#{empregadoEditMB.pessoa.sexo}">
@@ -37,7 +53,8 @@
 					placeholder="Telefone Fixo" />
 
 				<p:inputMask id="celular" value="#{empregadoEditMB.pessoa.celular}"
-					mask="(99) 99999-9999" placeholder="Telefone Celular" required="true" />
+					mask="(99) 99999-9999" placeholder="Telefone Celular"
+					required="true" />
 
 				<p:inputText placeholder="Digite o E-mail" required="true"
 					label="E-mail" value="#{empregadoEditMB.pessoa.email}"
@@ -46,36 +63,41 @@
 				<br></br>
 				<h:outputText value="Dados do endereço" />
 				<p:inputText placeholder="Nome da Rua" required="true"
-					label="Nome da Rua" value="#{empregadoEditMB.pessoa.endereco.rua}"
+					label="Nome da Rua" value="#{empregadoEditMB.endereco.rua}"
 					styleClass="width500px" maxlength="200" size="50" />
 
-				<p:inputMask id="Numero" value="#{empregadoEditMB.pessoa.endereco.numero}"
+				<p:inputMask id="Numero" value="#{empregadoEditMB.endereco.numero}"
 					mask="9?99999" placeholder="Número" label="Número da Residência" />
 
 				<p:inputText placeholder="Bairro" required="true" label="Bairro"
-					value="#{empregadoEditMB.pessoa.endereco.bairro}" styleClass="width500px"
+					value="#{empregadoEditMB.endereco.bairro}" styleClass="width500px"
 					maxlength="100" size="50" />
-				
+
 				<p:inputText placeholder="Cidade" required="true" label="Cidade"
-					value="#{empregadoEditMB.pessoa.endereco.cidade}" styleClass="width500px"
+					value="#{empregadoEditMB.endereco.cidade}" styleClass="width500px"
 					maxlength="30" size="50" />
 
 				<h:outputText value="Estado" />
-				<p:selectOneMenu value="#{empregadoEditMB.pessoa.endereco.estado}">
+				<p:selectOneMenu value="#{empregadoEditMB.endereco.estado}">
 					<f:selectItems value="#{empregadoEditMB.listaEstado}" var="estado"
 						itemLabel="#{estado}" itemValue="#{estado}"></f:selectItems>
 				</p:selectOneMenu>
 
-				<br></br>
-				<h:outputLabel value="CPF do intermediário" />
-				<p:inputMask id="cpf" value="#{empregadoEditMB.cpf}"
-					mask="999.999.999-99" placeholder="CPF do intermédiario"
-					required="true" />
-				
 				<p:commandButton value="Salvar"
 					action="#{empregadoEditMB.salvar()}" ajax="false" />
 
 			</p:panelGrid>
+
+			<p:dialog modal="true" resizable="false" header="Values"
+				widgetVar="dlg" showEffect="fold">
+				<p:panelGrid id="display" columns="2" columnClasses="label,value">
+					<h:outputText value="Mask:" />
+					<h:outputText value="#{empregadoEditMB.dataNascimento}">
+						<f:convertDateTime pattern="MM/dd/yyyy" />
+					</h:outputText>
+				</p:panelGrid>
+			</p:dialog>
+
 		</ui:define>
 	</ui:composition>
 

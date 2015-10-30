@@ -7,36 +7,42 @@ import javax.inject.Named;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.context.WebApplicationContext;
 
+import br.com.bicosonline.model.Endereco;
 import br.com.bicosonline.model.Pessoa;
+import br.com.bicosonline.model.User;
 import br.com.bicosonline.support.Fachada;
 
-@Named(value="empregadoAdmListMB")
-@Scope(value=WebApplicationContext.SCOPE_REQUEST)
+@Named(value = "empregadoAdmListMB")
+@Scope(value = WebApplicationContext.SCOPE_REQUEST)
 public class EmpregadoAdmListMB {
 
 	@Autowired
 	private Fachada fachada;
-	
+
 	@Autowired
 	private EmpregadoAdmEditMB empregadoAdmEditMB;
-	
+
 	private List<Pessoa> listaEmpregados;
-	
-	
+
 	@PostConstruct
-	public void init(){
+	public void init() {
 		this.listaEmpregados = fachada.listarEmpregados();
 	}
-	
-	public void classificar(Pessoa p){
-		this.empregadoAdmEditMB.editar(p);;
+
+	public void classificar(Pessoa p) {
+		this.empregadoAdmEditMB.editar(p);
+		;
 	}
 
-	public void excluir(Pessoa p){
-		this.fachada.removerPessoa(p);
+	public void excluir(Pessoa p) {
+		Endereco e = fachada.procurarEndereco(p);
+		this.fachada.removerPessoa(p, e);
 	}
+
 	public Fachada getFachada() {
 		return fachada;
 	}

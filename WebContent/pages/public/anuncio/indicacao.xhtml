@@ -8,7 +8,7 @@
 <h:head></h:head>
 <h:body>
 
-	<ui:composition template="/pages/private/index.xhtml">
+	<ui:composition template="/pages/public/index.xhtml">
 		<ui:define name="conteudo">
 			<h3>Anúncio</h3>
 			<p:dataTable id="datatable" var="anuncio"
@@ -62,14 +62,14 @@
 
 				<p:column headerText="Indicar">
 					<p:commandButton
-						actionListener="#{indicacaoMB.adicionar(empregado) ajax='false' }"></p:commandButton>
+						actionListener="#{indicacaoMB.adicionar(empregado)" ajax="false"></p:commandButton>
 				</p:column>
 
 			</p:dataTable>
 
 			<br></br>
 			<p:commandLink actionListener="#{indicacaoMB.concluir()}"
-				action="anuncioList.xhtml">Concluir</p:commandLink>
+				action="anuncioAdmList.xhtml">Concluir</p:commandLink>
 		</ui:define>
 	</ui:composition>
 

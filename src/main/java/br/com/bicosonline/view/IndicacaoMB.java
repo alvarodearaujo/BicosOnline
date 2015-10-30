@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.context.FacesContext;
+import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.apache.commons.mail.EmailException;
@@ -24,7 +25,7 @@ public class IndicacaoMB {
 	@Autowired
 	private Fachada fachada;
 	
-	@Autowired
+	@Inject
 	private DialogView dialogView;
 	
 	@Autowired

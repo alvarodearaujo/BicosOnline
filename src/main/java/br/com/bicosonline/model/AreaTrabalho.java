@@ -9,7 +9,8 @@ public enum AreaTrabalho {
 	Motorista(5),
 	Eletricista(6),
 	Bábá(7),
-	Outros(8); 
+	Alvenaria(8),
+	Outros(9); 
 	
 	private int valor;
 	

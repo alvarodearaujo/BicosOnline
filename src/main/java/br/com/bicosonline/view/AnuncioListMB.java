@@ -3,6 +3,7 @@ package br.com.bicosonline.view;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,22 +20,22 @@ public class AnuncioListMB {
 	@Autowired
 	private Fachada fachada;
 
-	@Autowired
 	private IndicacaoMB indicacaoMB;
 
+	private List<Anuncio> listaAnuncio;
+	
+	@PostConstruct
+	public void init() {
+	}
+	
+	
 	public void indicar(Anuncio a) {
+		getIndicacaoMB();
 		this.indicacaoMB.indicar(a);
 	}
 
-	private List<Anuncio> listaAnuncio;
-
-	@PostConstruct
-	public void init() {
-		this.listaAnuncio = fachada.listarAnuncios();
-	}
-
 	public List<Anuncio> getListaAnuncio() {
-		this.listaAnuncio = this.fachada.listarAnunciosAbertos();
+		this.listaAnuncio = this.fachada.listarAnunciosFechados();
 		return listaAnuncio;
 	}
 
@@ -51,11 +52,14 @@ public class AnuncioListMB {
 	}
 
 	public IndicacaoMB getIndicacaoMB() {
+		if(this.indicacaoMB == null){
+			this.indicacaoMB = new IndicacaoMB();
+		}
 		return indicacaoMB;
 	}
+
 
 	public void setIndicacaoMB(IndicacaoMB indicacaoMB) {
 		this.indicacaoMB = indicacaoMB;
 	}
-
 }

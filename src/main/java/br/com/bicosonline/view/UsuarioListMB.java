@@ -36,7 +36,7 @@ public class UsuarioListMB {
 	}
 
 	public void excluir(User User) {
-		fachada.excluirUsuario(User);
+		fachada.removerUsuario(User);
 		setListaUser(listarUser());
 	}
 	

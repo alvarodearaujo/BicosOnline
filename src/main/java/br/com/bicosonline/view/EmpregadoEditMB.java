@@ -1,5 +1,10 @@
 package br.com.bicosonline.view;
 
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -16,7 +21,8 @@ import br.com.bicosonline.model.Pessoa;
 import br.com.bicosonline.model.Sexo;
 import br.com.bicosonline.model.User;
 import br.com.bicosonline.support.Fachada;
-@Named(value="empregadooEditMB")
+import br.com.bicosonline.support.UserLogadoController;
+@Named(value="empregadoEditMB")
 @Scope(value=WebApplicationContext.SCOPE_REQUEST)
 public class EmpregadoEditMB {
 
@@ -33,23 +39,48 @@ public class EmpregadoEditMB {
 	
 	private User user;
 	
+	private Date dataNascimento;
+
+	private LocalDate data;
+	
 	private int nota;
+	
+	private UserLogadoController uc;   
+	
 	
 	@PostConstruct
 	public void init(){
 		this.pessoa = new Pessoa();
 		this.endereco = new Endereco();
+		uc = new UserLogadoController();
+		this.user = uc.getUsuario();
 	}
 	
 	public String salvar(){
-		this.user = (User) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("UsuarioLogado");
 		this.intermediario = fachada.procurarPessoaUsuario(user);
+		
+		//Setando a data de nascimento
+		this.setData(dataNascimento);
+		this.pessoa.setDataNascimento(data);
+		
+		//Salvando o empregado
 		this.fachada.salvarEmpregado(this.pessoa, intermediario);
+		
+		//Salvando o endereço
+		this.endereco.setPessoa(this.pessoa);
+		this.fachada.salvarEndereco(this.endereco);
+		
 		return "success";
 	}
 	
-	public void editar(Pessoa p){
+	public void editar(Pessoa p) {
 		this.pessoa = p;
+		this.setEndereco(pessoa.getEndereco());
+	}
+	
+	public void setData(Date date) {
+		Instant instant = date.toInstant();
+		this.data = instant.atZone(ZoneId.systemDefault()).toLocalDate();
 	}
 	
 	public Fachada getFachada() {
@@ -68,15 +99,6 @@ public class EmpregadoEditMB {
 		this.pessoa = pessoa;
 	}
 
-
-	public List<Sexo> getListaSexo() {
-		return listaSexo;
-	}
-
-	public void setListaSexo(List<Sexo> listaSexo) {
-		this.listaSexo = listaSexo;
-	}
-
 	public Endereco getEndereco() {
 		return endereco;
 	}
@@ -85,46 +107,69 @@ public class EmpregadoEditMB {
 		this.endereco = endereco;
 	}
 
-	public List<Estados> getListaEstados() {
-		return listaEstado;
+	public Date getDataNascimento() {
+		return dataNascimento;
 	}
 
-	public void setListaEstados(List<Estados> listaEstados) {
-		this.listaEstado = listaEstados;
+	public LocalDate getData() {
+		return data;
+	}
+
+	public void setDataNascimento(Date dataNascimento) {
+		this.dataNascimento = dataNascimento;
 	}
 
 	public Pessoa getIntermediario() {
 		return intermediario;
 	}
 
-	public void setIntermediario(Pessoa intermediario) {
-		this.intermediario = intermediario;
-	}
-
-	public List<Estados> getListaEstado() {
-		return listaEstado;
-	}
-
-	public void setListaEstado(List<Estados> listaEstado) {
-		this.listaEstado = listaEstado;
-	}
-
 	public User getUser() {
 		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
 	}
 
 	public int getNota() {
 		return nota;
 	}
 
+	public void setIntermediario(Pessoa intermediario) {
+		this.intermediario = intermediario;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public void setData(LocalDate data) {
+		this.data = data;
+	}
+
 	public void setNota(int nota) {
 		this.nota = nota;
 	}
 
+	public List<Sexo> getListaSexo() {
+		return  Arrays.asList(Sexo.values());
+	}
+
+	public List<Estados> getListaEstado() {
+		return  Arrays.asList(Estados.values());
+	}
+
+	public void setListaSexo(List<Sexo> listaSexo) {
+		this.listaSexo = listaSexo;
+	}
+
+	public void setListaEstado(List<Estados> listaEstado) {
+		this.listaEstado = listaEstado;
+	}
+
+	public UserLogadoController getUc() {
+		return uc;
+	}
+
+	public void setUc(UserLogadoController uc) {
+		this.uc = uc;
+	}
 
 	
 }

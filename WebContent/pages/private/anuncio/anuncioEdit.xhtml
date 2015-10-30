@@ -43,26 +43,26 @@
 
 				<h:outputText value="Anunciante da vaga" />
 				<p:selectOneMenu value="#{anuncioEditMB.empregador}">
-					<f:selectItems value="#{pessoaEditMB.listaEmpregador}"
+					<f:selectItems value="#{anuncioEditMB.listaEmpregador}"
 						var="empregador" itemLabel="#{empregador.nome}"
 						itemValue="#{empregador}"></f:selectItems>
 				</p:selectOneMenu>
 				
 				<h:outputText value="Intermediario da vaga" />
 				<p:selectOneMenu value="#{anuncioEditMB.intermediario}">
-					<f:selectItems value="#{pessoaEditMB.listaIntermediario}"
+					<f:selectItems value="#{anuncioEditMB.listaIntermediario}"
 						var="intermediario" itemLabel="#{intermediario.nome}"
 						itemValue="#{intermediario}"></f:selectItems>
 				</p:selectOneMenu>
 				
 				<h:outputText value="Empregado na vaga" />
 				<p:selectOneMenu value="#{anuncioEditMB.empregado}">
-					<f:selectItems value="#{pessoaEditMB.listaEmpregado}"
+					<f:selectItems value="#{anuncioEditMB.listaEmpregado}"
 						var="empregado" itemLabel="#{empregado.nome}"
 						itemValue="#{empregado}"></f:selectItems>
 				</p:selectOneMenu>
 
-				<p:commandButton value="salvar"
+				<p:commandButton value="Finalizar"
 					action="#{anuncioEditMB.salvar()}" ajax="false" />
 
 			</p:panelGrid>
