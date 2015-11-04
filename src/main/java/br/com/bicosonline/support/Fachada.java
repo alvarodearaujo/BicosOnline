@@ -2,6 +2,7 @@ package br.com.bicosonline.support;
 
 import java.util.List;
 
+import org.apache.commons.mail.EmailException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -113,7 +114,7 @@ public class Fachada {
 		@Autowired
 		private UsuarioBC usuarioBC;
 
-		public void salvarUsuario(User usuario) {
+		public void salvarUsuario(User usuario) throws EmailException {
 			this.usuarioBC.salvarUsuario(usuario);
 		}
 
@@ -123,6 +124,14 @@ public class Fachada {
 
 		public List<User> listarUsuario() {
 			return this.usuarioBC.listarUsuario();
+		}
+		
+		public User procurarPorLogin(String login){
+			return this.usuarioBC.procurarPorLogin(login);
+		}
+		
+		public User procurarUserPorPessoa(Pessoa p){
+			return this.usuarioBC.procurarPorPessoa(p);
 		}
 		
 	//Classificacao

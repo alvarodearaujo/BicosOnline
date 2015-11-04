@@ -20,9 +20,7 @@ public class Anuncio extends EntidadeBase<Long>{
 	
 	private boolean IsAberto;
 	
-	private String titulo, descricao, requesitos;
-	
-	private int valor;
+	private String titulo, descricao, requesitos, valor;
 	
 	@Enumerated
 	private AreaTrabalho area;
@@ -30,7 +28,7 @@ public class Anuncio extends EntidadeBase<Long>{
 	public Anuncio() {}
 	
 	public Anuncio(Pessoa pessoa, Long idEmpregado, Long idIntermediario, boolean isAberto, String titulo,
-			String descricao, String requesitos, int valor, AreaTrabalho area) {
+			String descricao, String requesitos, String valor, AreaTrabalho area) {
 		super();
 		this.pessoa = pessoa;
 		this.idEmpregado = idEmpregado;
@@ -96,11 +94,11 @@ public class Anuncio extends EntidadeBase<Long>{
 		this.idIntermediario = idIntermediario;
 	}
 
-	public int getValor() {
+	public String getValor() {
 		return valor;
 	}
 
-	public void setValor(int valor) {
+	public void setValor(String valor) {
 		this.valor = valor;
 	}
 

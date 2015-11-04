@@ -50,28 +50,55 @@ public class EmpregadorEditMB {
 
 	public String salvar() {
 		Pessoa jaExiste = this.fachada.procurarPorCpf(this.pessoa.getCpf());
+		// Verifica se o CPF já está Cadastrado
 		if (jaExiste == null) {
-			if (!jaExiste.isEmpregador()) {
-				this.pessoa.setEmpregador(true);
+			this.pessoa.setEmpregador(true);
 
-				this.setData(dataNascimento);
-				this.pessoa.setDataNascimento(data);
+			this.setData(dataNascimento);
+			
+			this.pessoa.setDataNascimento(data);
+			this.fachada.salvarPessoa(pessoa);
 
-				this.pessoa.setDataNascimento(data);
-				this.fachada.salvarPessoa(pessoa);
+			this.endereco.setPessoa(pessoa);
+			this.fachada.salvarEndereco(endereco);
 
-				this.endereco.setPessoa(pessoa);
-				this.fachada.salvarEndereco(endereco);
+			return "success";
+			
+			//Verificando se é uma edição
+		}else if(this.pessoa.getId() == jaExiste.getId()){
+			this.pessoa.setEmpregador(true);
+			
+			this.setData(dataNascimento);
+			this.pessoa.setDataNascimento(data);
 
-				return "success";
-			}
+			this.fachada.salvarPessoa(pessoa);
+			
+			//Excluir endereço antigo
+			Endereco end = this.fachada.procurarEndereco(pessoa);
+			this.fachada.removerEndereco(end);
+			
+			this.endereco.setPessoa(pessoa);
+			this.fachada.salvarEndereco(endereco);
+
+			return "success";
+			
+			
+			// Verifica se existe um cadastro como empregador
+		} else if (!jaExiste.isEmpregador()) {
+			
+			jaExiste.setEmpregador(true);
+			fachada.salvarPessoa(jaExiste);
+
+			return "success";
+
 		} else {
 			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "CPF duplicado!",
 					"Já existe um cadastro com esse CPF no sistema.");
 			FacesContext.getCurrentInstance().addMessage(null, message);
-
+			
+			return "failed";
 		}
-		return "failed";
+		
 	}
 
 	public void editar(Pessoa p) {

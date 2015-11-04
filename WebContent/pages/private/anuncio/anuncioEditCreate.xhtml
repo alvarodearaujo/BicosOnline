@@ -13,27 +13,38 @@
 
 			<p:panelGrid columns="1" styleClass="width600px">
 				<h3>Cadastro de Anúncios</h3>
-				<h:inputHidden value="#{anuncioEditCreateMB.anuncio.id}" />
 				
+					<h:inputHidden value="#{anuncioEditCreateMB.anuncio.id}" />
+
 				<h:outputText value="Título do Anúncio" />
 				<p:inputText placeholder="Título" required="true" label="Título"
-					value="#{anuncioEditCreateMB.anuncio.titulo}" styleClass="width500px"
-					maxlength="100" />
-				
+					value="#{anuncioEditCreateMB.anuncio.titulo}"
+					styleClass="width500px" maxlength="100"
+					validatorMessage="O campo do título só aceita letras ou numeros.">
+					<f:validateRegex pattern="[a-zA-Z0-9 ]*" />
+				</p:inputText>
+
 				<h:outputText value="Descrição da vaga" />
 				<p:inputText placeholder="Descrição" required="true"
 					label="Descrição" value="#{anuncioEditCreateMB.anuncio.descricao}"
-					styleClass="width500px" maxlength="500" />
-				
+					styleClass="width500px" maxlength="500"
+					validatorMessage="O campo do descrição só aceita letras ou numeros.">
+					<f:validateRegex pattern="[a-zA-Z0-9 ]*" />
+				</p:inputText>
+
 				<h:outputText value="Valor Proposto" />
-				<p:inputText placeholder="Valor" required="true" label="Valor"
-					value="#{anuncioEditCreateMB.anuncio.valor}" styleClass="width500px"
-					maxlength="8" />
-				
+				<p:inputMask id="valor" value="#{anuncioEditCreateMB.anuncio.valor}"
+					mask="9?.999" placeholder="Valor do serviço" required="true" >
+				</p:inputMask>
+
 				<h:outputText value="Requesitos" />
 				<p:inputText placeholder="Requesitos" required="true"
-					label="Requesitos" value="#{anuncioEditCreateMB.anuncio.requesitos}"
-					styleClass="width500px" maxlength="500" />
+					label="Requesitos"
+					value="#{anuncioEditCreateMB.anuncio.requesitos}"
+					styleClass="width500px" maxlength="500"
+					validatorMessage="O campo do Requesitos só aceita letras ou numeros.">
+					<f:validateRegex pattern="[a-zA-Z0-9 ]*" />
+				</p:inputText>
 
 				<h:outputLabel value="Área de trabalho" />
 				<p:selectOneMenu value="#{anuncioEditCreateMB.anuncio.area}">

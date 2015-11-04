@@ -152,4 +152,20 @@
     TITLE="success" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
+ <PROCESS-ITEM
+  NAME="rules:#pages#private#intermediario#intermediarioAdmCreate.xhtml"
+  PATH="/pages/private/intermediario/intermediarioAdmCreate.xhtml"
+  SHAPE="32,1585,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM
+   ID="rules:#pages#private#intermediario#intermediarioAdmCreate.xhtml:0"
+   NAME="item"
+   PATH="/pages/private/intermediario/intermediarioAdmCreate.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="success::#pages#private#intermediario#intermediarioList.xhtml"
+    NAME="output"
+    PATH="/pages/private/intermediario/intermediarioList.xhtml"
+    TARGET="rules:#pages#private#intermediario#intermediarioList.xhtml"
+    TITLE="success" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
 </PROCESS>

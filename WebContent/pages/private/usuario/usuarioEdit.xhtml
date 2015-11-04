@@ -11,15 +11,30 @@
 	<ui:composition template="/pages/private/index.xhtml">
 		<ui:define name="conteudo">
 			<p:panelGrid columns="1" styleClass="width600px">
+
 				<h:outputLabel value="Dados do novo usuário" />
+
 				<h:inputHidden value="#{usuarioEditMB.usuario.id}" />
+
 				<p:inputText placeholder="Nome" required="true" label="Nome"
 					value="#{usuarioEditMB.usuario.nome}" styleClass="width500px"
+					maxlength="30" />
+
+				<p:inputText placeholder="Login" required="true" label="Login"
+					value="#{usuarioEditMB.usuario.login}" styleClass="width500px"
 					maxlength="30" />
 
 				<p:password placeholder="Senha" required="true" label="Senha"
 					value="#{usuarioEditMB.usuario.password}" styleClass="width500px"
 					maxlength="10" />
+			
+				<p:inputText id="email" placeholder="Digite o E-mail"
+					required="true" label="E-mail"
+					value="#{usuarioEditMB.usuario.email}" styleClass="width500px"
+					maxlength="80" size="50" validatorMessage="E-Mail Inválido!">
+					<f:validateRegex
+						pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+				</p:inputText>
 
 				<p:commandButton value="salvar" action="#{usuarioEditMB.salvar()}"
 					ajax="false" />

@@ -15,6 +15,12 @@ public class AnuncioBC {
 	@Autowired
 	private IAnuncioDAO dao;
 	
+	@Autowired
+	private PessoaBC pessoaBC;
+	
+	@Autowired
+	private EnderecoBC enderecoBC;
+	
 	public void salvarAnuncio(Anuncio a){
 		dao.save(a);
 	}
@@ -28,6 +34,8 @@ public class AnuncioBC {
 		listaAux = dao.findAll();
 		for(Anuncio a : listaAux){
 			if(a.isIsAberto() == true){
+				a.setPessoa(this.pessoaBC.procuraPessoaAnuncio(a));
+				a.getPessoa().setEndereco(enderecoBC.procurarEndereco(a.getPessoa()));
 				listaAnuncios.add(a);
 			}
 		}
@@ -46,7 +54,13 @@ public class AnuncioBC {
 	}
 	
 	public List<Anuncio> listarAnuncios(){
-		return dao.findAll();
+		List<Anuncio> listaAnuncios = new ArrayList<Anuncio>(), listaAux ;
+		listaAux = dao.findAll();
+		for(Anuncio a : listaAux){
+				a.getPessoa().setEndereco(enderecoBC.procurarEndereco(a.getPessoa()));
+				listaAnuncios.add(a);
+		}
+		return listaAnuncios;
 	}
 	
 }

@@ -17,10 +17,18 @@
 				<p:column headerText="Numero" sortBy="#{anuncio.id}">
 					<h:outputText value="#{anuncio.id}" />
 				</p:column>
-
+				
 				<p:column headerText="Título" sortBy="#{anuncio.titulo}">
 					<h:outputText value="#{anuncio.titulo}" />
 				</p:column>
+				
+				<p:column headerText="Anunciante" sortBy="#{anuncio.pessoa.nome}">
+					<h:outputText value="#{anuncio.pessoa.nome}" />
+				</p:column>
+				
+				<p:column headerText="Cidade" sortBy="#{anuncio.pessoa.endereco.cidade}">
+					<h:outputText value="#{anuncio.pessoa.endereco.cidade}" />
+				</p:column>				
 
 				<p:column headerText="Descrição" sortBy="#{anuncio.descricao}">
 					<h:outputText value="#{anuncio.descricao}" />

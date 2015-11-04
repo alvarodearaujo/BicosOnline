@@ -23,11 +23,11 @@ public class AnuncioEditCreateMB {
 	
 	private Anuncio anuncio;
 	
-	private Pessoa empregador, intermediario, empregado;
+	private Pessoa empregador;
 	
 	private List<AreaTrabalho> listaArea;
 
-	private List<Pessoa> listaEmpregado, listaEmpregador, listaIntermediario;
+	private List<Pessoa>  listaEmpregador;
 	
 	@PostConstruct
 	public void init(){
@@ -37,6 +37,7 @@ public class AnuncioEditCreateMB {
 	
 	public String salvar(){
 		this.anuncio.setIsAberto(true);
+		this.anuncio.setAnunciante(this.empregador);
 		this.fachada.salvarAnuncio(this.anuncio);
 		return "success";
 	}
@@ -69,15 +70,6 @@ public class AnuncioEditCreateMB {
 		this.listaArea = listaArea;
 	}
 
-	public List<Pessoa> getListaEmpregado() {
-		this.listaEmpregado = fachada.listarEmpregados();
-		return listaEmpregado;
-	}
-
-	public void setListaEmpregado(List<Pessoa> listaEmpregado) {
-		this.listaEmpregado = listaEmpregado;
-	}
-
 	public List<Pessoa> getListaEmpregador() {
 		this.listaEmpregador = fachada.listarEmpregadores();
 		return listaEmpregador;
@@ -87,31 +79,6 @@ public class AnuncioEditCreateMB {
 		this.listaEmpregador = listaEmpregador;
 	}
 
-	public List<Pessoa> getListaIntermediario() {
-		this.listaIntermediario = fachada.listarIntermediarios();
-		return listaIntermediario;
-	}
-
-	public void setListaIntermediario(List<Pessoa> listaIntermediario) {
-		this.listaIntermediario = listaIntermediario;
-	}
-
-	public Pessoa getIntermediario() {
-		return intermediario;
-	}
-
-	public void setIntermediario(Pessoa intermediario) {
-		this.intermediario = intermediario;
-	}
-
-	public Pessoa getEmpregado() {
-		return empregado;
-	}
-
-	public void setEmpregado(Pessoa empregado) {
-		this.empregado = empregado;
-	}
-
 	public Pessoa getEmpregador() {
 		return empregador;
 	}
@@ -119,6 +86,5 @@ public class AnuncioEditCreateMB {
 	public void setEmpregador(Pessoa empregador) {
 		this.empregador = empregador;
 	}
-
 
 }

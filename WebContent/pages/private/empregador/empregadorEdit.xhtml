@@ -22,25 +22,33 @@
 				<h:outputText value="Dados do Empregador" />
 				<p:inputText placeholder="Digite o nome" required="true"
 					label="Nome" value="#{empregadorEditMB.pessoa.nome}"
-					styleClass="width500px" maxlength="100" size="50" />
+					styleClass="width500px" maxlength="100" size="50" validatorMessage="O campo Nome só pode conter letras.">
+					<f:validateRegex pattern="[a-zA-Z ]*" />
+				</p:inputText>
+
 
 				<p:inputMask id="cpf" value="#{empregadorEditMB.pessoa.cpf}"
-					mask="999.999.999-99" placeholder="Digite o  CPF" required="true">
+					mask="999.999.999-99" placeholder="Digite o  CPF" required="true" >
+					<f:validator validatorId="CpfValidator"/>
 				</p:inputMask>
-				
+
 				<p:outputLabel value="Data de nascimento" />
 				<p:calendar id="dataNascimento"
 					value="#{empregadorEditMB.dataNascimento}" mindate="01/01/1940"
-					maxdate="01/01/2015" pattern="dd/MM/yyyy" mask="true" />
+					maxdate="01/01/2015" pattern="dd/MM/yyyy" mask="true"  validatorMessage="Data Inválida, informe uma data no formato EX: 01/01/1990"/>
 
 				<p:inputText placeholder="Digite o RG" required="true" label="RG"
 					value="#{empregadorEditMB.pessoa.rg}" styleClass="width500px"
-					maxlength="10" size="15" />
+					maxlength="10" size="15" validatorMessage="O campo RG só pode conter Numeros." >
+					<f:validateRegex pattern="[0-9]+" />
+				</p:inputText>
 
 				<p:inputText placeholder="Orgão Emissor" required="true"
 					label="Orgão Expedidor"
 					value="#{empregadorEditMB.pessoa.orgaoExpedidor}"
-					styleClass="width500px" maxlength="5" size="15" />
+					styleClass="width500px" maxlength="5" size="15" validatorMessage="O campo Orgão Expedidor só pode conter letras.">
+					<f:validateRegex pattern="[a-zA-Z]+" />
+				</p:inputText>
 
 				<h:outputText value="Sexo" />
 				<p:selectOneMenu value="#{empregadorEditMB.pessoa.sexo}">
@@ -58,34 +66,41 @@
 					mask="(99) 99999-9999" placeholder="Telefone Celular"
 					required="true" />
 
-				<p:inputText placeholder="Digite o E-mail" required="true"
-					label="E-mail" value="#{empregadorEditMB.pessoa.email}"
-					styleClass="width500px" maxlength="80" size="50" />
+				<p:inputText id="email" placeholder="Digite o E-mail"
+					required="true" label="E-mail"
+					value="#{empregadorEditMB.pessoa.email}" styleClass="width500px"
+					maxlength="80" size="50" validatorMessage="E-Mail Inválido!">
+					<f:validateRegex
+						pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+				</p:inputText>
 
 				<br></br>
 				<h:outputText value="Dados do endereço" />
-				
-				
-				<h:inputHidden value="#{empregadorEditMB.endereco.id}" />
-				
+
 				<p:inputText placeholder="Nome da Rua" required="true"
 					label="Nome da Rua" value="#{empregadorEditMB.endereco.rua}"
-					styleClass="width500px" maxlength="200" size="50" />
+					styleClass="width500px" maxlength="200" size="50">
+				</p:inputText>
 
 				<p:inputMask id="Numero" value="#{empregadorEditMB.endereco.numero}"
 					mask="9?99999" placeholder="Número" label="Número da Residência" />
-					
-					<p:inputText placeholder="Complemento" required="true"
-					label="Complemento" value="#{empregadorEditMB.endereco.complemento}"
-					styleClass="width500px" maxlength="200" size="50" />
+
+				<p:inputText placeholder="Complemento" required="false"
+					label="Complemento"
+					value="#{empregadorEditMB.endereco.complemento}"
+					styleClass="width500px" maxlength="200" size="50">
+				</p:inputText>
 
 				<p:inputText placeholder="Bairro" required="true" label="Bairro"
 					value="#{empregadorEditMB.endereco.bairro}" styleClass="width500px"
-					maxlength="100" size="50" />
+					maxlength="100" size="50">
+				</p:inputText>
 
 				<p:inputText placeholder="Cidade" required="true" label="Cidade"
 					value="#{empregadorEditMB.endereco.cidade}" styleClass="width500px"
-					maxlength="30" size="50" />
+					maxlength="30" size="50" validatorMessage="O campo Cidade só pode conter letras.">
+					<f:validateRegex pattern="[a-zA-Z ]*" />
+				</p:inputText>
 
 				<h:outputText value="Estado" />
 				<p:selectOneMenu value="#{empregadorEditMB.endereco.estado}">

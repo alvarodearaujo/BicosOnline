@@ -17,12 +17,20 @@
 					<h:outputText value="#{usuario.nome}" />
 				</p:column>
 				
-				<p:column>
+				<p:column headerText="Login" sortBy="#{usuario.login}">
+					<h:outputText value="#{usuario.login}" />
+				</p:column>
+				
+				<p:column headerText="Nome" sortBy="#{usuario.email}">
+					<h:outputText value="#{usuario.email}" />
+				</p:column>
+				
+				<p:column  headerText="Editar"> 
 					<p:commandLink actionListener="#{usuarioListMB.editar(usuario)}"
 						action="usuarioEdit.xhtml">Editar</p:commandLink>
 				</p:column>
 			
-				<p:column>
+				<p:column  headerText="Excluir">
 					<p:commandLink update="datatable"
 						actionListener="#{usuarioListMB.excluir(usuario)}">Excluir</p:commandLink>
 				</p:column>

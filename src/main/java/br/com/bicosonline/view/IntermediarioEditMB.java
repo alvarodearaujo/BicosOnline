@@ -6,6 +6,7 @@ import javax.annotation.PostConstruct;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
+import org.apache.commons.mail.EmailException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.web.context.WebApplicationContext;
@@ -38,7 +39,12 @@ public class IntermediarioEditMB {
 	}
 
 	public String salvar() {
-		this.fachada.salvarUsuario(this.usuario);
+		try {
+			this.fachada.salvarUsuario(this.usuario);
+		} catch (EmailException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		this.fachada.salvarPessoa(this.intermediario);
 		return "success";
 	}

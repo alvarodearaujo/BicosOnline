@@ -21,6 +21,9 @@ public class PessoaBC {
 	@Autowired
 	private EnderecoBC enderecoBC;
 	
+	@Autowired
+	private UsuarioBC usuarioBC;
+	
 	public void SalvarPessoa(Pessoa p){
 		this.dao.save(p);
 	}
@@ -28,6 +31,15 @@ public class PessoaBC {
 	public void ExcluirPessoa(Pessoa p, Endereco e){
 		this.enderecoBC.removerEndereco(e);
 		this.dao.delete(p);
+	}
+	
+	public void ExcluirIntermediario(Pessoa p){
+		Endereco e = this.enderecoBC.procurarEndereco(p);
+		User u = this.usuarioBC.procurarPorPessoa(p);
+		this.enderecoBC.removerEndereco(e);
+		this.usuarioBC.excluirUsuario(u);
+		this.dao.delete(p);
+		
 	}
 	
 	public void salvarEmpregado(Pessoa a, Pessoa b){

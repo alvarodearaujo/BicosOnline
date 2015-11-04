@@ -18,6 +18,7 @@
 
 		<p:layoutUnit position="west" resizable="false">
 			<h:form>
+				<h3>Bicos Online</h3>
 				<p:menu>
 					<p:submenu label="Empregador">
 						<p:menuitem url="/pages/private/empregador/empregadorCreate.xhtml"
@@ -35,7 +36,7 @@
 
 					<p:submenu label="Intermediario">
 						<p:menuitem
-							url="/pages/private/intermediario/intermediarioAdmEdit.xhtml"
+							url="/pages/private/intermediario/intermediarioAdmCreate.xhtml"
 							value="Cadastrar Intermediario" />
 						<p:menuitem
 							url="/pages/private/intermediario/intermediarioList.xhtml"
@@ -46,7 +47,7 @@
 						<p:menuitem url="/pages/private/empregado/empregadoAdmList.xhtml"
 							value="Listar empregados"></p:menuitem>
 					</p:submenu>
-					
+
 					<p:submenu label="Usuario">
 						<p:menuitem url="/pages/private/usuario/usuarioEdit.xhtml"
 							value="Cadastrar Usuario" />
@@ -54,15 +55,14 @@
 							value="Listar Usuarios"></p:menuitem>
 					</p:submenu>
 					<p:submenu label="Desconectar">
-						<p:menuitem url="/"
-							value="Efetuar Logoff" />
+						<p:menuitem url="/" value="Efetuar Logoff" />
 					</p:submenu>
 				</p:menu>
 			</h:form>
 		</p:layoutUnit>
 
 		<p:layoutUnit id="layoutcenter" position="center">
-
+		   
 			<div id="conteudo">
 				<h:form id="form">
 					<p:growl id="growl" showDetail="true" sticky="true" />

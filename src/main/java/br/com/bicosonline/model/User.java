@@ -8,13 +8,7 @@ public class User extends EntidadeBase<Long> {
 
 	private static final long serialVersionUID = 201404140102L;
 
-	private String nome;
-
-	private String login;
-
-	private String password;
-
-	private String role;
+	private String nome, login, password, role, email;
 
 	@OneToOne
 	private Pessoa intermediario;
@@ -22,15 +16,16 @@ public class User extends EntidadeBase<Long> {
 	public User() {
 	}
 
-	public User(String nome, String login, String password, String role) {
+	public User(String nome, String login, String password, String role,  String email) {
 		super();
 		this.nome = nome;
 		this.login = login;
 		this.password = password;
 		this.role = role;
+		this.email = email;
 	}
 
-	public String gerarNovaSenha() {
+	public void gerarNovaSenha() {
 		String[] carct = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d", "e", "f", "g", "h",
 				"i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "A", "B", "C",
 				"D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X",
@@ -40,7 +35,7 @@ public class User extends EntidadeBase<Long> {
 			int j = (int) (Math.random() * carct.length);
 			senha += carct[j];
 		}
-		return senha;
+		this.setPassword(senha);
 	}
 
 	public String getNome() {
@@ -81,6 +76,14 @@ public class User extends EntidadeBase<Long> {
 
 	public void setIntermediario(Pessoa intermediario) {
 		this.intermediario = intermediario;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 }
