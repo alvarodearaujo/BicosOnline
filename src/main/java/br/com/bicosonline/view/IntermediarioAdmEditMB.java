@@ -37,7 +37,7 @@ public class IntermediarioAdmEditMB {
 
 	private List<Sexo> listaSexo;
 
-	private User usuario, usuarioAtual;
+	private User usuario;
 
 	private Endereco endereco;
 
@@ -45,13 +45,13 @@ public class IntermediarioAdmEditMB {
 
 	private LocalDate data;
 
+	private String login;
+
 	@PostConstruct
 	public void init() {
 		this.pessoa = new Pessoa();
 		this.usuario = new User();
-		this.usuarioAtual = new User();
 		this.endereco = new Endereco();
-
 	}
 
 	public String salvar() {
@@ -93,7 +93,7 @@ public class IntermediarioAdmEditMB {
 				this.usuario.gerarNovaSenha();
 				this.usuario.setEmail(pessoaEncontrada.getEmail());
 				this.usuario.setIntermediario(pessoaEncontrada);
-				
+
 				try {
 					this.fachada.salvarUsuario(this.usuario);
 				} catch (EmailException e) {
@@ -101,6 +101,39 @@ public class IntermediarioAdmEditMB {
 					e.printStackTrace();
 				}
 				return "success";
+			} else if (this.login != null) {
+				if (this.usuario.getLogin().equals(this.login)) {
+					this.setData(dataNascimento);
+					this.pessoa.setDataNascimento(data);
+					this.fachada.salvarPessoa(this.pessoa);
+
+					this.endereco.setPessoa(pessoa);
+					this.fachada.salvarEndereco(this.endereco);
+
+					return "success";
+
+				} else if (this.fachada.procurarPorLogin(this.usuario.getLogin()) == null) {
+					this.setData(dataNascimento);
+					this.pessoa.setDataNascimento(data);
+					this.fachada.salvarPessoa(this.pessoa);
+
+					this.endereco.setPessoa(pessoa);
+					this.fachada.salvarEndereco(this.endereco);
+
+					this.usuario.setIntermediario(this.pessoa);
+					try {
+						this.fachada.salvarUsuario(this.usuario);
+					} catch (EmailException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					return "success";
+				} else {
+					FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro no Usuário",
+							"Já existe usuário com o login informado.");
+					FacesContext.getCurrentInstance().addMessage(null, message);
+					return "failed";
+				}
 			} else {
 				FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro no Cadastro",
 						"Já existe um intermediário com o CPF informado.");
@@ -116,50 +149,12 @@ public class IntermediarioAdmEditMB {
 
 	}
 
-	public String salvarEditar() {
-			String login = this.usuarioAtual.getLogin();
-		if (this.usuario.getLogin().equals(login)) {
-			this.setData(dataNascimento);
-			this.pessoa.setDataNascimento(data);
-			this.fachada.salvarPessoa(this.pessoa);
-
-			this.endereco.setPessoa(pessoa);
-			this.fachada.salvarEndereco(this.endereco);
-			
-			return "success";
-			
-		} else if(this.fachada.procurarPorLogin(this.usuario.getLogin()) == null){
-			this.setData(dataNascimento);
-			this.pessoa.setDataNascimento(data);
-			this.fachada.salvarPessoa(this.pessoa);
-
-			this.endereco.setPessoa(pessoa);
-			this.fachada.salvarEndereco(this.endereco);
-
-			this.usuario.setIntermediario(this.pessoa);
-			try {
-				this.fachada.salvarUsuario(this.usuario);
-			} catch (EmailException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			return "success";
-		}else{
-			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro no Usuário",
-					"Já existe usuário com o login informado.");
-			FacesContext.getCurrentInstance().addMessage(null, message);
-			return "failed";
-		}
-
-		
-	}
-
 	public void editar(Pessoa p) {
 		this.pessoa = p;
 		this.endereco = fachada.procurarEndereco(p);
 		this.setLocalData(p.getDataNascimento());
 		this.usuario = fachada.procurarUserPorPessoa(p);
-		this.usuarioAtual = fachada.procurarUserPorPessoa(p);
+		this.login = this.usuario.getLogin();
 	}
 
 	public void setData(Date date) {
@@ -233,6 +228,14 @@ public class IntermediarioAdmEditMB {
 
 	public void setData(LocalDate data) {
 		this.data = data;
+	}
+
+	public String getLogin() {
+		return login;
+	}
+
+	public void setLogin(String login) {
+		this.login = login;
 	}
 
 }

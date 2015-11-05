@@ -16,73 +16,79 @@
 			<p:panelGrid columns="1" styleClass="width1000px"
 				id="painelPrincipal">
 				<h3>Cadastro de Intermediario</h3>
-				
-				<h:inputHidden value="intermediarioAdmEditMB.pessoa.id" />
-				<h:inputHidden value="intermediarioAdmEditMB.pessoa.cpf" />
-				<h:inputHidden value="intermediarioAdmEditMB.endereco.id" />
-				<h:inputHidden value="intermediarioAdmEditMB.usuario.id" />
-				<h:inputHidden value="intermediarioAdmEditMB.usuarioAtual.login" />
-				
+
 
 				<h:outputText value="Dados do Intermediario" />
 				<p:inputText placeholder="Digite o nome" required="true"
 					label="Nome" value="#{intermediarioAdmEditMB.pessoa.nome}"
-					styleClass="width500px" maxlength="100" size="50" validatorMessage="O campo Nome só pode conter letras.">
+					styleClass="width500px" maxlength="100" size="50"
+					validatorMessage="O campo Nome só pode conter letras.">
 					<f:validateRegex pattern="[a-zA-Z ]*" />
 				</p:inputText>
 
+				<p:inputMask id="cpf" value="#{intermediarioAdmEditMB.pessoa.cpf}"
+					mask="999.999.999-99" placeholder="Digite o  CPF" required="true"  disabled="true" >
+					<f:validator validatorId="CpfValidator" />
+				</p:inputMask>
+
 				<p:outputLabel value="Data de nascimento" />
 				<p:calendar id="dataNascimento"
-					value="#{intermediarioAdmEditMB.dataNascimento}" mindate="01/01/1940"
-					maxdate="01/01/2015" pattern="dd/MM/yyyy" mask="true"  validatorMessage="Data Inválida, informe uma data no formato EX: 01/01/1990"/>
+					value="#{intermediarioAdmEditMB.dataNascimento}"
+					mindate="01/01/1940" maxdate="01/01/2015" pattern="dd/MM/yyyy"
+					mask="true"
+					validatorMessage="Data Inválida, informe uma data no formato EX: 01/01/1990" />
 
 				<p:inputText placeholder="Digite o RG" required="true" label="RG"
 					value="#{intermediarioAdmEditMB.pessoa.rg}" styleClass="width500px"
-					maxlength="10" size="15" validatorMessage="O campo RG só pode conter Numeros." >
+					maxlength="10" size="15"
+					validatorMessage="O campo RG só pode conter Numeros.">
 					<f:validateRegex pattern="[0-9]+" />
 				</p:inputText>
 
 				<p:inputText placeholder="Orgão Emissor" required="true"
 					label="Orgão Expedidor"
 					value="#{intermediarioAdmEditMB.pessoa.orgaoExpedidor}"
-					styleClass="width500px" maxlength="5" size="15" validatorMessage="O campo Orgão Expedidor só pode conter letras.">
+					styleClass="width500px" maxlength="5" size="15"
+					validatorMessage="O campo Orgão Expedidor só pode conter letras.">
 					<f:validateRegex pattern="[a-zA-Z]+" />
 				</p:inputText>
 
 				<h:outputText value="Sexo" />
 				<p:selectOneMenu value="#{intermediarioAdmEditMB.pessoa.sexo}">
-					<f:selectItems value="#{intermediarioAdmEditMB.listaSexo}" var="sexo"
-						itemLabel="#{sexo}" itemValue="#{sexo}"></f:selectItems>
+					<f:selectItems value="#{intermediarioAdmEditMB.listaSexo}"
+						var="sexo" itemLabel="#{sexo}" itemValue="#{sexo}"></f:selectItems>
 				</p:selectOneMenu>
 
 				<br></br>
 				<h:outputText value="Dados para contato" />
 				<p:inputMask id="telefone"
-					value="#{intermediarioAdmEditMB.pessoa.telefone}" mask="(99) 9999-9999"
-					placeholder="Telefone Fixo" />
+					value="#{intermediarioAdmEditMB.pessoa.telefone}"
+					mask="(99) 9999-9999" placeholder="Telefone Fixo" />
 
-				<p:inputMask id="celular" value="#{intermediarioAdmEditMB.pessoa.celular}"
+				<p:inputMask id="celular"
+					value="#{intermediarioAdmEditMB.pessoa.celular}"
 					mask="(99) 99999-9999" placeholder="Telefone Celular"
 					required="true" />
 
 				<p:inputText id="email" placeholder="Digite o E-mail"
 					required="true" label="E-mail"
-					value="#{intermediarioAdmEditMB.pessoa.email}" styleClass="width500px"
-					maxlength="80" size="50" validatorMessage="E-Mail Inválido!">
+					value="#{intermediarioAdmEditMB.pessoa.email}"
+					styleClass="width500px" maxlength="80" size="50"
+					validatorMessage="E-Mail Inválido!">
 					<f:validateRegex
 						pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
 				</p:inputText>
 
 				<br></br>
 				<h:outputText value="Dados do endereço" />
-
 				<p:inputText placeholder="Nome da Rua" required="true"
 					label="Nome da Rua" value="#{intermediarioAdmEditMB.endereco.rua}"
 					styleClass="width500px" maxlength="200" size="50">
 				</p:inputText>
 
-				<p:inputMask id="Numero" value="#{intermediarioAdmEditMB.endereco.numero}"
-					mask="9?99999" placeholder="Número" label="Número da Residência" />
+				<p:inputMask id="Numero"
+					value="#{intermediarioAdmEditMB.endereco.numero}" mask="9?99999"
+					placeholder="Número" label="Número da Residência" />
 
 				<p:inputText placeholder="Complemento" required="false"
 					label="Complemento"
@@ -91,32 +97,39 @@
 				</p:inputText>
 
 				<p:inputText placeholder="Bairro" required="true" label="Bairro"
-					value="#{intermediarioAdmEditMB.endereco.bairro}" styleClass="width500px"
-					maxlength="100" size="50">
+					value="#{intermediarioAdmEditMB.endereco.bairro}"
+					styleClass="width500px" maxlength="100" size="50">
 				</p:inputText>
 
 				<p:inputText placeholder="Cidade" required="true" label="Cidade"
-					value="#{intermediarioAdmEditMB.endereco.cidade}" styleClass="width500px"
-					maxlength="30" size="50" validatorMessage="O campo Cidade só pode conter letras.">
+					value="#{intermediarioAdmEditMB.endereco.cidade}"
+					styleClass="width500px" maxlength="30" size="50"
+					validatorMessage="O campo Cidade só pode conter letras.">
 					<f:validateRegex pattern="[a-zA-Z ]*" />
 				</p:inputText>
 
 				<h:outputText value="Estado" />
 				<p:selectOneMenu value="#{intermediarioAdmEditMB.endereco.estado}">
-					<f:selectItems value="#{intermediarioAdmEditMB.listaEstado}" var="estado"
-						itemLabel="#{estado}" itemValue="#{estado}"></f:selectItems>
+					<f:selectItems value="#{intermediarioAdmEditMB.listaEstado}"
+						var="estado" itemLabel="#{estado}" itemValue="#{estado}"></f:selectItems>
 				</p:selectOneMenu>
-				
+
 				<br></br>
 				<h:outputLabel value="Dados para acesso ao sistema" />
 				<p:inputText placeholder="Login" required="true" label="Cidade"
-					value="#{intermediarioAdmEditMB.usuario.login}" styleClass="width500px"
-					maxlength="30" size="30" validatorMessage="O campo Login só pode conter letras ou números.">
+					value="#{intermediarioAdmEditMB.usuario.login}"
+					styleClass="width500px" maxlength="30" size="30"
+					validatorMessage="O campo Login só pode conter letras ou números.">
 					<f:validateRegex pattern="[a-zA-Z0-9]*" />
 				</p:inputText>
+				
+				<h:inputHidden value="intermediarioAdmEditMB.pessoa.id" />
+				<h:inputHidden value="intermediarioAdmEditMB.endereco.id" />
+				<h:inputHidden value="intermediarioAdmEditMB.usuario.id" />
+				<h:inputHidden value="intermediarioAdmEditMB.login" />
 
 				<p:commandButton value="Salvar"
-					action="#{intermediarioAdmEditMB.salvarEditar()}" ajax="false" />
+					action="#{intermediarioAdmEditMB.salvar()}" ajax="false" />
 
 			</p:panelGrid>
 

@@ -8,7 +8,6 @@ import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
-import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,11 +56,10 @@ public class EmpregadoEditMB {
 	}
 	
 	public String salvar(){
-		this.intermediario = fachada.procurarPessoaUsuario(user);
+		this.intermediario = fachada.procurarPessoaUsuario(fachada.procurarPorLogin(this.user.getLogin()));
 		
 		//Setando a data de nascimento
 		this.setData(dataNascimento);
-		this.pessoa.setDataNascimento(data);
 		
 		//Salvando o empregado
 		this.fachada.salvarEmpregado(this.pessoa, intermediario);
@@ -75,9 +73,14 @@ public class EmpregadoEditMB {
 	
 	public void editar(Pessoa p) {
 		this.pessoa = p;
+		this.setLocalData(this.pessoa.getDataNascimento());
 		this.setEndereco(pessoa.getEndereco());
 	}
 	
+	public void setLocalData(LocalDate ld) {
+		this.dataNascimento = Date.from(ld.atStartOfDay(ZoneId.systemDefault()).toInstant());
+	}
+
 	public void setData(Date date) {
 		Instant instant = date.toInstant();
 		this.data = instant.atZone(ZoneId.systemDefault()).toLocalDate();

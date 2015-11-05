@@ -14,6 +14,7 @@ import br.com.bicosonline.model.Endereco;
 import br.com.bicosonline.model.Pessoa;
 import br.com.bicosonline.model.User;
 import br.com.bicosonline.support.Fachada;
+import br.com.bicosonline.support.UserLogadoController;
 
 @Named(value="empregadoListMB")
 @Scope(value=WebApplicationContext.SCOPE_REQUEST)
@@ -25,15 +26,20 @@ public class EmpregadoListMB {
 	@Autowired
 	private EmpregadoEditMB empregadoEditMB;
 	
+	@Autowired
+	private UserLogadoController uc;   
+	
 	private List<Pessoa> listaEmpregados;
 	
 	private Pessoa intermediario;
 	
 	private User user;
 	
+	
 	@PostConstruct
 	public void init(){
-		this.user = (User) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("UsuarioLogado");
+		uc = new UserLogadoController();
+		this.user = uc.getUsuario();
 		this.intermediario = fachada.procurarPessoaUsuario(user);
 		this.listaEmpregados = fachada.listarMeusEmpregados(intermediario);
 	}
